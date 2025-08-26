@@ -1,0 +1,21 @@
+
+steps:
+  # Terraform init
+  - name: 'hashicorp/terraform:1.5'
+    dir: 'terraform/first-vm'
+    args: ['init', '-input=false']
+
+  # Terraform plan
+  - name: 'hashicorp/terraform:1.5'
+    dir: 'terraform/first-vm'
+    args: ['plan', '-input=false', '-out=tfplan']
+
+  # Terraform apply
+  - name: 'hashicorp/terraform:1.5'
+    dir: 'terraform/first-vm'
+    args: ['apply', '-input=false', '-auto-approve', 'tfplan']
+
+timeout: 600s
+options:
+  logging: CLOUD_LOGGING_ONLY
+  #
