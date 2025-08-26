@@ -9,8 +9,7 @@ steps:
         terraform init
         terraform apply -auto-approve \
           -var="project_id=$PROJECT_ID" \
-          -var="github_owner=your-github-username" \
-          -var="github_repo=your-repo-name"
+          -var="region=us-central1"
 
   # Terraform plan
   - name: 'hashicorp/terraform:1.5'
