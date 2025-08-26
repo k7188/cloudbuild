@@ -5,7 +5,7 @@ steps:
     args:
       - -c
       - |
-        cd infra
+        cd terraform
         terraform init
         terraform apply -auto-approve \
           -var="project_id=$PROJECT_ID" \
