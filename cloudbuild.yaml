@@ -1,9 +1,16 @@
 
 steps:
-  # Terraform init
-  - name: 'hashicorp/terraform:1.5'
-    dir: 'terraform'
-    args: ['init', '-input=false']
+  - name: hashicorp/terraform:1.5
+    entrypoint: sh
+    args:
+      - -c
+      - |
+        cd infra
+        terraform init
+        terraform apply -auto-approve \
+          -var="project_id=$PROJECT_ID" \
+          -var="github_owner=your-github-username" \
+          -var="github_repo=your-repo-name"
 
   # Terraform plan
   - name: 'hashicorp/terraform:1.5'
