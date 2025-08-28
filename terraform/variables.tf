@@ -1,7 +1,7 @@
 variable "project_id" {
   description = "GCP project ID"
   type        = string
-  default     = "clcd-cloudbuild-huss"
+#  default     = "clcd-cloudbuild-huss"
 }
 
 
