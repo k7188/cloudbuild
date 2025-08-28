@@ -1,18 +1,25 @@
 steps:
   # Terraform init
   - name: 'hashicorp/terraform:1.5'
-    dir: 'terraform'
+    dir: 'terraform/environments/${_ENVIRONMENT}'
     args: ['init']
+    id: 'terraform-init'
 
-  # Terraform plan
+  # Terraform plan with project ID
   - name: 'hashicorp/terraform:1.5'
-    dir: 'terraform'
-    args: ['plan', '-input=false', '-out=tfplan']
+    dir: 'terraform/environments/${_ENVIRONMENT}'
+    args: 
+      - 'plan'
+      - '-input=false'
+      - '-out=tfplan'
+      - '-var=project_id=${_PROJECT_ID}'  # Pass project ID dynamically
+    id: 'terraform-plan'
 
   # Terraform apply
   - name: 'hashicorp/terraform:1.5'
-    dir: 'terraform'
+    dir: 'terraform/environments/${_ENVIRONMENT}'
     args: ['apply', '-input=false', '-auto-approve', 'tfplan']
+    id: 'terraform-apply'
 
 timeout: 600s
 options:
