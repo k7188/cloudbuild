@@ -1,15 +1,8 @@
-
 steps:
-  - name: hashicorp/terraform:1.5
-    entrypoint: sh
-    args:
-      - -c
-      - |
-        cd terraform
-        terraform init
-        terraform apply -auto-approve \
-          -var="project_id=$PROJECT_ID" \
-          -var="region=us-central1"
+  # Terraform init
+  - name: 'hashicorp/terraform:1.5'
+    dir: 'terraform'
+    args: ['init']
 
   # Terraform plan
   - name: 'hashicorp/terraform:1.5'
@@ -24,4 +17,3 @@ steps:
 timeout: 600s
 options:
   logging: CLOUD_LOGGING_ONLY
-  #1
