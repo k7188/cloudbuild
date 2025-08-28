@@ -13,8 +13,3 @@ provider "google" {
   region  = var.region
 }
 
-# Service Account for Terraform/Cloud Build
-resource "google_service_account" "cloud_build_runner" {
-  account_id   = "cloud-build-runner"
-  display_name = "Cloud Build Runner"
-}
