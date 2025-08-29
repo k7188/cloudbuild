@@ -32,5 +32,5 @@ module "dev_vm" {
   labels = {
     environment = "dev"
     owner       = "development-team"
-  }
+  }  
 }

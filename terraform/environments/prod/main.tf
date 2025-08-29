@@ -33,4 +33,4 @@ module "prod_vm" {
     owner       = "operations-team"
     cost-center = "production"
   }
-}
+} 
