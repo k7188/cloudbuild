@@ -21,16 +21,29 @@ resource "google_storage_bucket" "test_dev_bucket" {
 resource "random_id" "suffix" {
   byte_length = 4
 }
-module "dev_vm" {
- source = "./terraform/modules/compute"  # ← Absolute path
+resource "google_compute_instance" "dev_vm" {
+  name         = "dev-vm"
+  machine_type = "e2-micro"
+  zone         = "us-central1-a"
 
-  instance_name = "dev-vm"
-  machine_type  = "e2-micro"
-  zone          = "us-central1-a"
-  disk_size     = 20
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-11"
+      size  = 20
+    }
+  }
+
+  network_interface {
+    network = "default"
+    access_config {
+      // Ephemeral public IP
+    }
+  }
+
+  tags = ["http-server", "https-server"]
 
   labels = {
     environment = "dev"
     owner       = "development-team"
-  }  
+  }
 }
