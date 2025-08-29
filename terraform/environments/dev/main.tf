@@ -13,7 +13,7 @@ provider "google" {
   region  = var.region
 }
 
-resource "google_storage_bucket" "test_bucket" {
+resource "google_storage_bucket" "test_dev_bucket" {
   name     = "${var.project_id}-test-dev-bucket-${random_id.suffix.hex}"
   location = var.region
 }
