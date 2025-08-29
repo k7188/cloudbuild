@@ -21,7 +21,7 @@ resource "random_id" "suffix" {
   byte_length = 4
 }
 module "prod_vm" {
-  source = "../../modules/compute"
+  source = "./terraform/modules/compute"  # ← Absolute path
 
   instance_name = "prod-vm"
   machine_type  = "e2-small"  # Slightly larger for prod

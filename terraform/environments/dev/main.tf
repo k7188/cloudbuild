@@ -22,7 +22,7 @@ resource "random_id" "suffix" {
   byte_length = 4
 }
 module "dev_vm" {
-  source = "../../modules/compute"
+ source = "./terraform/modules/compute"  # ← Absolute path
 
   instance_name = "dev-vm"
   machine_type  = "e2-micro"
