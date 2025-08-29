@@ -21,3 +21,16 @@ resource "google_storage_bucket" "test_dev_bucket" {
 resource "random_id" "suffix" {
   byte_length = 4
 }
+module "dev_vm" {
+  source = "../../modules/compute"
+
+  instance_name = "dev-vm"
+  machine_type  = "e2-micro"
+  zone          = "us-central1-a"
+  disk_size     = 20
+
+  labels = {
+    environment = "dev"
+    owner       = "development-team"
+  }
+}

@@ -20,3 +20,17 @@ resource "google_storage_bucket" "test_prod_bucket" {
 resource "random_id" "suffix" {
   byte_length = 4
 }
+module "prod_vm" {
+  source = "../../modules/compute"
+
+  instance_name = "prod-vm"
+  machine_type  = "e2-small"  # Slightly larger for prod
+  zone          = "us-central1-a"
+  disk_size     = 30  # Larger disk for prod
+
+  labels = {
+    environment = "prod"
+    owner       = "operations-team"
+    cost-center = "production"
+  }
+}
