@@ -1,22 +1,34 @@
-variable "instance_name" {
-  description = "Name of the instance"
+variable "project_id" {
+  description = "The GCP project ID where the VM will be created"
   type        = string
 }
 
-variable "machine_type" {
-  description = "Machine type"
+variable "region" {
+  description = "The GCP region for resources"
   type        = string
-  default     = "e2-micro"
+  default     = "us-central1"
 }
 
 variable "zone" {
-  description = "Zone for the instance"
+  description = "The GCP zone for the VM"
   type        = string
   default     = "us-central1-a"
 }
 
-variable "image" {
-  description = "Boot image"
+variable "vm_name" {
+  description = "Name of the test VM"
+  type        = string
+  default     = "test-vm-01"
+}
+
+variable "machine_type" {
+  description = "Machine type for the VM"
+  type        = string
+  default     = "e2-micro"
+}
+
+variable "vm_image" {
+  description = "Boot image for the VM"
   type        = string
   default     = "debian-cloud/debian-11"
 }
@@ -27,20 +39,8 @@ variable "disk_size" {
   default     = 20
 }
 
-variable "network" {
-  description = "Network to attach to"
+variable "disk_type" {
+  description = "Boot disk type"
   type        = string
-  default     = "default"
-}
-
-variable "tags" {
-  description = "Network tags"
-  type        = list(string)
-  default     = []
-}
-
-variable "labels" {
-  description = "Resource labels"
-  type        = map(string)
-  default     = {}
+  default     = "pd-standard"
 }
