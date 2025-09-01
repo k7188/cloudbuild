@@ -1,10 +1,10 @@
 variable "instance_name" {
-  description = "Name of the instance"
+  description = "Name of the compute instance"
   type        = string
 }
 
 variable "machine_type" {
-  description = "Machine type"
+  description = "Machine type for the instance"
   type        = string
   default     = "e2-micro"
 }
@@ -15,32 +15,12 @@ variable "zone" {
   default     = "us-central1-a"
 }
 
-variable "image" {
-  description = "Boot image"
+variable "project_id" {
+  description = "Google Cloud project ID"
   type        = string
-  default     = "debian-cloud/debian-11"
 }
 
-variable "disk_size" {
-  description = "Boot disk size in GB"
-  type        = number
-  default     = 20
-}
-
-variable "network" {
-  description = "Network to attach to"
+variable "environment" {
+  description = "Environment tag (dev, test, prod)"
   type        = string
-  default     = "default"
-}
-
-variable "tags" {
-  description = "Network tags"
-  type        = list(string)
-  default     = []
-}
-
-variable "labels" {
-  description = "Resource labels"
-  type        = map(string)
-  default     = {}
 }

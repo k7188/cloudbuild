@@ -1,27 +1,26 @@
-resource "google_compute_instance" "default" {
+resource "google_compute_instance" "vm" {
   name         = var.instance_name
   machine_type = var.machine_type
   zone         = var.zone
+  project      = var.project_id
 
   boot_disk {
     initialize_params {
-      image = var.image
-      size  = var.disk_size
+      image = "debian-cloud/debian-11"
     }
   }
 
   network_interface {
-    network = var.network
+    network = "default"
     access_config {
       // Ephemeral public IP
     }
   }
 
-  tags = var.tags
-
-  metadata = {
-    enable-oslogin = "TRUE"
+  labels = {
+    environment = var.environment
+    managed-by  = "terraform"
   }
 
-  labels = var.labels
+  tags = ["http-server", "https-server"]
 }
