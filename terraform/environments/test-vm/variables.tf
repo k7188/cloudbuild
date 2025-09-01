@@ -18,7 +18,7 @@ variable "zone" {
 variable "vm_name" {
   description = "Name of the test VM"
   type        = string
-  default     = "test-vm-01"
+  default     = "syed-vm1"
 }
 
 variable "machine_type" {
