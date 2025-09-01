@@ -22,7 +22,7 @@ provider "google" {
 }
 
 # Create a simple VM
-resource "google_compute_instance" "test2_vm" {
+resource "google_compute_instance" "test3_vm" {
   name         = var.vm_name
   machine_type = var.machine_type
   zone         = var.zone
